@@ -1,0 +1,24 @@
+.square {
+    width: 200px;
+    height: 200px;
+}
+
+.piece {
+    font-size: 120px;
+    font-weight: 900;
+    color: grey;
+}
+
+.board-layout {
+    width: 600px;
+    height: 450px;
+    background: black;
+
+}
+
+.board-row {
+    width: 600px;
+    margin: 10px 0;
+    height: 150px;
+    background: white;
+}
