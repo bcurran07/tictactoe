@@ -5,12 +5,13 @@
     background: white;
     margin: 0 5px;
     cursor: pointer;
-    font-size: 110px;
+    font-size: 89px;
     font-weight: 900;
     color: grey;
+    padding-left: 15px;
 }
 
-.board-row > :first-child .square {
+.board-row > :first-child  {
     margin: 0 5px 0 0;
 }
 
@@ -18,6 +19,7 @@
     width: 320px;
     height: 320px;
     background: black;
+    margin: 5px;
 }
 
 .board-row {

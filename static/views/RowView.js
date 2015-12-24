@@ -1,5 +1,5 @@
 var RowView = Marionette.CompositeView.extend({
-    template: _.template('<div class="board-row"></div>'),
+    template: _.template('<div class="board-row"></div>'), // gross, but we can't just set the className here
     childViewContainer: '.board-row',
     childView: SquareView,
 

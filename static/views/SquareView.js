@@ -1,13 +1,13 @@
 var SquareView = Marionette.ItemView.extend({
-    template: _.template('<div class="square"></div>'),
     tagName: 'span',
+    className: 'square',
 
     events: {
         click: 'checkSquare',
     },
 
     bindings: {
-        '.square': {
+        ':el': {
             observe: 'value',
             update: function($el, val, model, options) {
                 $el.html(val);
@@ -16,7 +16,6 @@ var SquareView = Marionette.ItemView.extend({
     },
 
     render: function() {
-        this.$el.html(this.template(this.model.attributes));
         this.stickit();
         return this;
     },
@@ -24,13 +23,14 @@ var SquareView = Marionette.ItemView.extend({
     checkSquare: function () {
         var playerPiece;
         if (this.model.get('value') === undefined) {
-            playerPiece = this.getPieceValue();
-            this.setSquareValue(playerPiece);
+            this.setSquareValue();
         }
     },
 
-    setSquareValue: function(pieceValue) {
-        this.model.set('value', pieceValue);
+    setSquareValue: function() {
+        var playerPiece = this.getPieceValue();
+        this.model.set('value', playerPiece);
+        this.shiftTurn();
     },
 
     getPieceValue: function() {
@@ -40,5 +40,10 @@ var SquareView = Marionette.ItemView.extend({
         else {
             return this.options.secondPlayer.get('piece');
         }
+    },
+
+    shiftTurn: function() {
+        this.options.firstPlayer.shiftTurn();
+        this.options.secondPlayer.shiftTurn();
     },
 });

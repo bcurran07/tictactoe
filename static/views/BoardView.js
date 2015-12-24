@@ -1,5 +1,5 @@
 var BoardView = Marionette.CollectionView.extend({
-    template: _.template('<div class="board"></div>'),
+    className: 'board',
     childViewContainer: '.board',
     childView: RowView,
 
