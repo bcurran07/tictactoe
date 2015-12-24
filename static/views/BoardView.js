@@ -3,8 +3,10 @@ var BoardView = Marionette.CollectionView.extend({
     childViewContainer: '.board',
     childView: RowView,
 
-    childViewOptions: {
-        squareCount: 3,
+    childViewOptions: function(model, index) {
+        return {
+            squareCount: this.options.rowCount,
+        };
     },
 
     initialize: function() {

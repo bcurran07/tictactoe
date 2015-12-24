@@ -4,6 +4,7 @@
     display: inline-block;
     background: white;
     margin: 0 5px;
+    cursor: pointer;
 }
 
 .board-row > :first-child .square {
@@ -20,7 +21,6 @@
     width: 470px;
     height: 450px;
     background: black;
-
 }
 
 .board-row {
