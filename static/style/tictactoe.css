@@ -1,6 +1,13 @@
 .square {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    background: white;
+    margin: 0 5px;
+}
+
+.board-row > :first-child .square {
+    margin: 0 5px 0 0;
 }
 
 .piece {
@@ -10,7 +17,7 @@
 }
 
 .board-layout {
-    width: 600px;
+    width: 470px;
     height: 450px;
     background: black;
 
@@ -20,5 +27,4 @@
     width: 600px;
     margin: 10px 0;
     height: 150px;
-    background: white;
 }

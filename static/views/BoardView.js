@@ -3,6 +3,10 @@ var BoardView = Marionette.CollectionView.extend({
     childViewContainer: '.board',
     childView: RowView,
 
+    childViewOptions: {
+        squareCount: 3,
+    },
+
     initialize: function() {
         this.collection = new Backbone.Collection();
         this.generateRows();
