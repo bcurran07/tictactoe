@@ -3,6 +3,13 @@ var RowView = Marionette.CompositeView.extend({
     childViewContainer: '.board-row',
     childView: SquareView,
 
+    childViewOptions: function(model, index) {
+        return {
+            firstPlayer: this.options.firstPlayer,
+            secondPlayer: this.options.secondPlayer,
+        };
+    },
+
     initialize: function() {
         this.collection = new Backbone.Collection();
         this.generateSquares();

@@ -6,11 +6,13 @@ var BoardView = Marionette.CollectionView.extend({
     childViewOptions: function(model, index) {
         return {
             squareCount: this.options.rowCount,
+            firstPlayer: this.options.firstPlayer,
+            secondPlayer: this.options.secondPlayer,
         };
     },
 
     initialize: function() {
-        this.collection = new Backbone.Collection();
+        this.collection = new Rows();
         this.generateRows();
     },
 
