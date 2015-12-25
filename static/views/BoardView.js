@@ -21,5 +21,13 @@ var BoardView = Marionette.CollectionView.extend({
             var row = new Row();
             this.collection.add(row);
         }
-    }
+    },
+
+    onAddChild: function(childView){
+        this.listenTo(childView, 'check:for:winner', this.checkForWinner);
+    },
+
+    checkForWinner: function(collection) {
+
+    },
 });

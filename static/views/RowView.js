@@ -15,6 +15,12 @@ var RowView = Marionette.CompositeView.extend({
         this.generateSquares();
     },
 
+    onAddChild: function(childView){
+        this.listenTo(childView, 'check:for:winner', function() {
+            this.trigger('check:for:winner', this.collection);
+        });
+    },
+
     generateSquares: function() {
         for (var i = 0; i < this.options.squareCount; i++) {
             var square = new Square();

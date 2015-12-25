@@ -19,13 +19,15 @@ var Router = Backbone.Router.extend({
     var firstPlayer, secondPlayer, boardView, boardLayout;
 
     firstPlayer = new Player({
-      piece: '&#10006',
+      display: '<div class="cross"></div>',
       turn: true,
+      piece: 'x'
     });
 
     secondPlayer = new Player({
-      piece: '&#9675',
+      display: '<div class="circle"></div>',
       turn: false,
+      piece: 'o'
     });
 
     boardView = new BoardView({

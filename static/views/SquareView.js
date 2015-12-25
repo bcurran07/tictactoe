@@ -1,5 +1,4 @@
 var SquareView = Marionette.ItemView.extend({
-    tagName: 'span',
     className: 'square',
 
     events: {
@@ -8,7 +7,7 @@ var SquareView = Marionette.ItemView.extend({
 
     bindings: {
         ':el': {
-            observe: 'value',
+            observe: 'display',
             update: function($el, val, model, options) {
                 $el.html(val);
             }
@@ -17,28 +16,37 @@ var SquareView = Marionette.ItemView.extend({
 
     render: function() {
         this.stickit();
-        return this;
     },
 
     checkSquare: function () {
         var playerPiece;
         if (this.model.get('value') === undefined) {
-            this.setSquareValue();
+            this.generatePlayerTurn();
         }
     },
 
-    setSquareValue: function() {
-        var playerPiece = this.getPieceValue();
-        this.model.set('value', playerPiece);
+    generatePlayerTurn: function() {
+        var player = this.getCurrentPlayer();
+        this.setDisplay(player);
+        this.setSquareValue(player);
+        this.trigger('check:for:winner');
         this.shiftTurn();
     },
 
-    getPieceValue: function() {
+    setDisplay: function(player) {
+        this.model.set('display', player.get('display'));
+    },
+
+    setSquareValue: function(player) {
+        this.model.set('value', player.get('piece'));
+    },
+
+    getCurrentPlayer: function() {
         if (this.options.firstPlayer.get('turn')) {
-            return this.options.firstPlayer.get('piece');
+            return this.options.firstPlayer;
         }
         else {
-            return this.options.secondPlayer.get('piece');
+            return this.options.secondPlayer;
         }
     },
 
