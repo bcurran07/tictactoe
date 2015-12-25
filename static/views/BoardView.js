@@ -24,7 +24,12 @@ var BoardView = Marionette.CollectionView.extend({
     },
 
     onAddChild: function(childView){
-        this.listenTo(childView, 'check:for:winner', this.checkForWinner);
+        this.listenTo(childView, 'check:for:end', this.checkForWinner);
+        this.listenTo(childView, 'game:end', this.showGameOverView);
+    },
+
+    showGameOverView: function(winningPlayer) {
+        this.trigger('game:end', winningPlayer);
     },
 
     checkForWinner: function(collection) {

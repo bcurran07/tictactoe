@@ -1,6 +1,7 @@
 var BoardLayout = Marionette.LayoutView.extend({
-    template: _.template('<div class="board-layout"></div>'),
+    template: _.template('<div class="board-layout"><div class="board-region"></div><div class="ended-game-region"></div></div>'),
     regions: {
-        board: '.board-layout',
+        boardRegion: '.board-region',
+        endedGameRegion: '.ended-game-region',
     }
 });

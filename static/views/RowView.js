@@ -11,14 +11,37 @@ var RowView = Marionette.CompositeView.extend({
     },
 
     initialize: function() {
-        this.collection = new Backbone.Collection();
+        this.collection = new Squares();
         this.generateSquares();
     },
 
     onAddChild: function(childView){
-        this.listenTo(childView, 'check:for:winner', function() {
-            this.trigger('check:for:winner', this.collection);
-        });
+        this.listenTo(childView, 'check:for:end', this.checkForHorizontalWin);
+    },
+
+    checkForHorizontalWin: function() {
+        var winningPlayer;
+
+        if (this.collection.horizontalWin() === true) {
+            winningPlayer = this.getWinningPlayer();
+            this.trigger('game:end', winningPlayer);
+        }
+        else {
+            this.trigger('check:for:end');
+        }
+    },
+
+    getWinningPlayer: function() {
+        // let's take another look at this later
+        var winningValue = this.collection.first().get('value');
+
+        if (winningValue === this.options.firstPlayer.get('piece')) {
+            return this.options.firstPlayer;
+        }
+
+        else {
+            return this.options.secondPlayer;
+        }
     },
 
     generateSquares: function() {

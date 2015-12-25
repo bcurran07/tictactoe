@@ -29,7 +29,7 @@ var SquareView = Marionette.ItemView.extend({
         var player = this.getCurrentPlayer();
         this.setDisplay(player);
         this.setSquareValue(player);
-        this.trigger('check:for:winner');
+        this.trigger('check:for:end');
         this.shiftTurn();
     },
 

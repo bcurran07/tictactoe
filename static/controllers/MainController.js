@@ -1,33 +1,39 @@
-
 var Router = Backbone.Router.extend({
   routes : {
     '' : 'index',
   },
 
   index : function() {
-    var boardView, boardLayout;
+    var boardView, gameEndedView, boardLayout;
 
     boardLayout = new BoardLayout();
     boardView = this.generateNewGame();
 
-    $('body').append( boardLayout.render().el );
-    boardLayout.board.show(boardView);
+    $('body').append(boardLayout.render().el);
+    boardLayout.boardRegion.show(boardView);
 
+    boardLayout.listenTo(boardView, 'game:end', function (gameWinner) {
+      gameEndedView = new GameEndedView({model: gameWinner});
+      boardLayout.removeRegion('boardRegion');
+      boardLayout.endedGameRegion.show(gameEndedView);
+    });
   },
 
   generateNewGame: function() {
     var firstPlayer, secondPlayer, board, boardView, boardLayout;
 
     firstPlayer = new Player({
+      name: 'Player One',
+      piece: 'x',
       display: '<div class="cross"></div>',
       turn: true,
-      piece: 'x',
     });
 
     secondPlayer = new Player({
+      name: 'Player Two',
+      piece: 'o',
       display: '<div class="circle"></div>',
       turn: false,
-      piece: 'o',
     });
 
     board = new Board();
