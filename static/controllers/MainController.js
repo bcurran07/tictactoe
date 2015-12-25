@@ -16,28 +16,30 @@ var Router = Backbone.Router.extend({
   },
 
   generateNewGame: function() {
-    var firstPlayer, secondPlayer, boardView, boardLayout;
+    var firstPlayer, secondPlayer, board, boardView, boardLayout;
 
     firstPlayer = new Player({
       display: '<div class="cross"></div>',
       turn: true,
-      piece: 'x'
+      piece: 'x',
     });
 
     secondPlayer = new Player({
       display: '<div class="circle"></div>',
       turn: false,
-      piece: 'o'
+      piece: 'o',
     });
 
+    board = new Board();
+
     boardView = new BoardView({
+      model: board,
       firstPlayer: firstPlayer,
       secondPlayer: secondPlayer,
       rowCount: 3,
     });
 
     return boardView;
-
   },
 
 });

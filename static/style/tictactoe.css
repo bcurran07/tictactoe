@@ -5,7 +5,6 @@
     background: white;
     margin: 0 5px;
     cursor: pointer;
-    padding-left: 8px;
 }
 
 .board-row > :first-child  {
@@ -20,30 +19,31 @@
 }
 
 .board-row {
-    width: 325px;
+    width: 350px;
     margin: 10px 0;
     height: 100px;
 }
 
 .circle {
     border-radius: 50%;
-    width: 85px;
-    height: 85px;
+    width: 60px;
+    height: 60px;
     border: 11px solid grey;
-    margin-top: 8px;
+    margin: 8px 0 0 10px;
     cursor: default;
  }
 
  .cross {
     height: 85px;
     width: 85px;
-    cursor: default;
-    font-size: 100px;
+    font-size: 105px;
     font-weight: 900;
     color: grey;
     position: absolute;
+    padding-left: 10px;
+    cursor: default;
  }
 
- .cross:before {
+ .cross:after {
     content: "\2716";
  }
