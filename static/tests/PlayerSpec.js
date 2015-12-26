@@ -1,15 +1,32 @@
-describe("Player", function () {
-    var player;
+describe('Player', function () {
+    var firstPlayer, secondPlayer;
+
     beforeEach(function () {
-        player = new Player({turn: true});
+      firstPlayer = new Player();
+      secondPlayer = new Player();
+
+      firstPlayer.generateFirstPlayer();
+      secondPlayer.generateSecondPlayer();
+    });
+
+    it('generates firstPlayer values', function() {
+      expect(firstPlayer.get('piece')).toBe('x');
+      expect(secondPlayer.get('piece')).toBe('o');
+
+      expect(firstPlayer.get('display')).toBe('<div class="cross"></div>');
+      expect(secondPlayer.get('display')).toBe('<div class="circle"></div>');
+
+      expect(firstPlayer.get('name')).toBe('Player One');
+      expect(secondPlayer.get('name')).toBe('Player Two');
     });
 
     it('toggles a boolean for the turn attribute', function() {
-       expect(player.get('turn')).toBeTruthy();
-       player.shiftTurn();
-       expect(player.get('turn')).toBeFalsy();
-       player.shiftTurn();
-       expect(player.get('turn')).toBeTruthy();
+      expect(firstPlayer.get('turn')).toBeTruthy();
 
+      firstPlayer.shiftTurn();
+      expect(firstPlayer.get('turn')).toBeFalsy();
+
+      firstPlayer.shiftTurn();
+      expect(firstPlayer.get('turn')).toBeTruthy();
     });
 });

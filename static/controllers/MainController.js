@@ -22,19 +22,11 @@ var Router = Backbone.Router.extend({
   generateNewGame: function() {
     var firstPlayer, secondPlayer, board, boardView, boardLayout;
 
-    firstPlayer = new Player({
-      name: 'Player One',
-      piece: 'x',
-      display: '<div class="cross"></div>',
-      turn: true,
-    });
+    firstPlayer = new Player();
+    firstPlayer.generateFirstPlayer();
 
-    secondPlayer = new Player({
-      name: 'Player Two',
-      piece: 'o',
-      display: '<div class="circle"></div>',
-      turn: false,
-    });
+    secondPlayer = new Player();
+    secondPlayer.generateSecondPlayer();
 
     board = new Board();
 

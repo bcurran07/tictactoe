@@ -1,28 +1,19 @@
-describe("SquareView", function () {
+describe('SquareView', function () {
 
-    var firstPlayer, secondPlayer, square, squareView;
+    var firstPlayer = new Player(),
+        secondPlayer =  new Player(),
+        square  = new Square(),
+        squareView;
 
     beforeEach(function () {
-        firstPlayer = new Player({
-          display: '<div class="cross"></div>',
-          turn: true,
-          piece: 'x'
-        });
-
-        secondPlayer = new Player({
-          display: '<div class="circle"></div>',
-          turn: false,
-          piece: 'o'
-        });
-
-        square = new Square();
-
         squareView = new SquareView({
           model: square,
           firstPlayer: firstPlayer,
           secondPlayer: secondPlayer,
         });
 
+        firstPlayer.generateFirstPlayer();
+        secondPlayer.generateSecondPlayer();
         squareView.render();
     });
 
