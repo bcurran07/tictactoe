@@ -1,3 +1,5 @@
+"use strict";
+
 var RowView = Marionette.CompositeView.extend({
     template: _.template('<div class="board-row"></div>'), // gross, but we can't just set the className here
     childViewContainer: '.board-row',
@@ -11,7 +13,7 @@ var RowView = Marionette.CompositeView.extend({
     },
 
     initialize: function() {
-        this.collection = new Squares();
+        this.collection = new Backbone.Collection();
         this.generateSquares();
     },
 
@@ -25,7 +27,7 @@ var RowView = Marionette.CompositeView.extend({
 
     generateSquares: function() {
         for (var i = 0; i < this.options.squareCount; i++) {
-            var square = new Square();
+            var square = new Backbone.Model();
             this.collection.add(square);
         }
         this.model.set('squares', this.collection);

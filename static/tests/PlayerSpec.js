@@ -9,7 +9,7 @@ describe('Player', function () {
       secondPlayer.generateSecondPlayer();
     });
 
-    it('generates firstPlayer values', function() {
+    it('generates player values', function() {
       expect(firstPlayer.get('piece')).toBe('x');
       expect(secondPlayer.get('piece')).toBe('o');
 

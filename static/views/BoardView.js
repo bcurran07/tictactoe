@@ -1,3 +1,5 @@
+"use strict";
+
 var BoardView = Marionette.CollectionView.extend({
     className: 'board',
     childViewContainer: '.board',
@@ -18,7 +20,7 @@ var BoardView = Marionette.CollectionView.extend({
 
     generateRows: function() {
         for (var i = 0; i < this.options.rowCount; i++) {
-            var row = new Row();
+            var row = new Backbone.Model();
             this.collection.add(row);
         }
     },

@@ -1,6 +1,6 @@
-var Rows = Backbone.Collection.extend({
-    model: Row,
+"use strict";
 
+var Rows = Backbone.Collection.extend({
     getBoardVals: function() {
         return this.map(function (model) {
             return model.get('squares').pluck('value');
@@ -18,7 +18,7 @@ var Rows = Backbone.Collection.extend({
     horizontalWinner: function(boardVals) {
         var winner = false;
         _.each(boardVals, function(val) {
-            if (val[0] === undefined) {
+            if (val.indexOf(undefined) > -1) {
                 return false;
             }
             else if (val[0] === val[1] && val[1] === val[2]) {
@@ -44,13 +44,13 @@ var Rows = Backbone.Collection.extend({
     },
 
     diagonalWinner: function(boardVals) {
-        var forwardDiagonal = boardVals[0][0] === boardVals[1][1] &&
-                              boardVals[1][1] === boardVals[2][2],
-            reverseDiagonal = boardVals[0][2] === boardVals[1][1] &&
+        var backDiagonal = boardVals[0][0] === boardVals[1][1] &&
+                           boardVals[2][2] === boardVals[1][1],
+            forwardDiagonal = boardVals[0][2] === boardVals[1][1] &&
                               boardVals[2][0] === boardVals[1][1];
 
         if (boardVals[1][1] === undefined || forwardDiagonal === false &&
-            reverseDiagonal === false) {
+            backDiagonal === false) {
             return false;
         }
         return boardVals[1][1];

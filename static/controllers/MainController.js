@@ -1,3 +1,5 @@
+"use strict";
+
 var Router = Backbone.Router.extend({
   routes : {
     '' : 'index',
@@ -28,10 +30,7 @@ var Router = Backbone.Router.extend({
     secondPlayer = new Player();
     secondPlayer.generateSecondPlayer();
 
-    board = new Board();
-
     boardView = new BoardView({
-      model: board,
       firstPlayer: firstPlayer,
       secondPlayer: secondPlayer,
       rowCount: 3,

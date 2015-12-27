@@ -2,7 +2,7 @@ describe('SquareView', function () {
 
     var firstPlayer = new Player(),
         secondPlayer =  new Player(),
-        square  = new Square(),
+        square  = new Backbone.Model(),
         squareView;
 
     beforeEach(function () {

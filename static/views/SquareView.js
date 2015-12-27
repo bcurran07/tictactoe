@@ -1,3 +1,5 @@
+"use strict";
+
 var SquareView = Marionette.ItemView.extend({
     className: 'square',
 
