@@ -24,15 +24,29 @@ var BoardView = Marionette.CollectionView.extend({
     },
 
     onAddChild: function(childView){
-        this.listenTo(childView, 'check:for:end', this.checkForWinner);
-        this.listenTo(childView, 'game:end', this.showGameOverView);
+        this.listenTo(childView, 'check:for:end', this.checkForEnd);
+        this.listenTo(childView, 'game:end', this.showGameEndedView);
     },
 
-    showGameOverView: function(winningPlayer) {
+    showGameEndedView: function(winningPlayer) {
         this.trigger('game:end', winningPlayer);
     },
 
-    checkForWinner: function(collection) {
+    checkForEnd: function() {
+        var winningPiece = this.collection.checkForWinner(),
+            tieGame;
+        if (winningPiece !== false) {
+            this.showGameEndedView(this.getWinningPlayer(winningPiece));
+        }
+    },
 
+    getWinningPlayer: function(winningPiece) {
+        if (winningPiece === this.options.firstPlayer.get('piece')) {
+            return this.options.firstPlayer;
+        }
+
+        else {
+            return this.options.secondPlayer;
+        }
     },
 });
