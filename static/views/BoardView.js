@@ -33,10 +33,12 @@ var BoardView = Marionette.CollectionView.extend({
     },
 
     checkForEnd: function() {
-        var winningPiece = this.collection.checkForWinner(),
-            tieGame;
+        var winningPiece = this.collection.checkForWinner();
         if (winningPiece !== false) {
             this.showGameEndedView(this.getWinningPlayer(winningPiece));
+        }
+        else if (this.collection.gameIsTied()) {
+            this.trigger('game:end', new Player({name: 'Nobody'}));
         }
     },
 
@@ -44,7 +46,6 @@ var BoardView = Marionette.CollectionView.extend({
         if (winningPiece === this.options.firstPlayer.get('piece')) {
             return this.options.firstPlayer;
         }
-
         else {
             return this.options.secondPlayer;
         }

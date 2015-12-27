@@ -10,35 +10,37 @@ var Rows = Backbone.Collection.extend({
     checkForWinner: function() {
         var boardVals = this.getBoardVals();
 
-        return this.horizontalWin(boardVals) ||
-               this.verticalWin(boardVals) ||
-               this.diagonalWin(boardVals);
+        return this.horizontalWinner(boardVals) ||
+               this.verticalWinner(boardVals) ||
+               this.diagonalWinner(boardVals);
     },
 
     horizontalWinner: function(boardVals) {
+        var winner = false;
         _.each(boardVals, function(val) {
-            if (val === undefined) {
+            if (val[0] === undefined) {
                 return false;
             }
             else if (val[0] === val[1] && val[1] === val[2]) {
-                return val[0];
+                winner = val[0][0];
             }
         });
 
-        return false;
+        return winner;
     },
 
     verticalWinner: function(boardVals) {
+        var winner = false;
         for (var i = 0; i <= boardVals.length; i++) {
             if (boardVals[0][i] === undefined) {
                 continue;
             }
             else if (boardVals[0][i] === boardVals[1][i] &&
                      boardVals[1][i] === boardVals[2][i]) {
-                return boardVals[0][i];
+                winner = boardVals[0][i];
             }
         }
-        return false;
+        return winner;
     },
 
     diagonalWinner: function(boardVals) {
@@ -46,19 +48,24 @@ var Rows = Backbone.Collection.extend({
                               boardVals[1][1] === boardVals[2][2],
             reverseDiagonal = boardVals[0][2] === boardVals[1][1] &&
                               boardVals[2][0] === boardVals[1][1];
-        if (boardVals[0][0] === undefined || forwardDiagonal === false ||
+
+        if (boardVals[1][1] === undefined || forwardDiagonal === false &&
             reverseDiagonal === false) {
             return false;
         }
-        return boardVals[0][0];
+        return boardVals[1][1];
     },
 
-    checkForTie: function() {
+    gameIsTied: function() {
+        var tieGame = true,
+            boardVals = this.getBoardVals();
+
         _.each(boardVals, function(rowVal) {
             if (rowVal.indexOf(undefined) > -1) {
-                return true;
+                tieGame = false;
+                return;
             }
         });
-        return false;
+        return tieGame;
     },
 });
