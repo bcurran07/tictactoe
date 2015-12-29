@@ -7,7 +7,7 @@ var Rows = Backbone.Collection.extend({
         });
     },
 
-    checkForWinner: function() {
+    getWinner: function() {
         var boardVals = this.getBoardVals();
 
         return this.horizontalWinner(boardVals) ||

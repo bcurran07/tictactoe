@@ -35,7 +35,7 @@ var BoardView = Marionette.CollectionView.extend({
     },
 
     checkForEnd: function() {
-        var winningPiece = this.collection.checkForWinner();
+        var winningPiece = this.collection.getWinner();
         if (winningPiece !== false) {
             this.showGameEndedView(this.getWinningPlayer(winningPiece));
         }
