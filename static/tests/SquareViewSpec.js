@@ -1,3 +1,5 @@
+"use strict";
+
 describe('SquareView', function () {
 
     var firstPlayer = new Player(),

@@ -1,3 +1,5 @@
+"use strict";
+
 describe('RowView', function(){
 
   var firstPlayer = new Player(),

@@ -1,9 +1,11 @@
+"use strict";
+
 describe('Rows', function() {
     var rowCollection;
 
     beforeEach(function() {
         rowCollection = new Rows();
-        for (i = 0; i < 3; i++) {
+        for (var i = 0; i < 3; i++) {
             rowCollection.add(new Backbone.Model({
                 'squares': new Backbone.Collection(
                     [
