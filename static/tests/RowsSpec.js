@@ -26,7 +26,7 @@ describe('Rows', function() {
         rowCollection.first().set('squares', horizontalWin);
         boardVals = rowCollection.getBoardVals();
 
-        expect(rowCollection.checkForWinner()).toBeTruthy();
+        expect(rowCollection.getWinner()).toBeTruthy();
         expect(rowCollection.horizontalWinner(boardVals)).toEqual('x');
     });
 
@@ -44,7 +44,7 @@ describe('Rows', function() {
 
         boardVals = rowCollection.getBoardVals();
 
-        expect(rowCollection.checkForWinner()).toBeTruthy();
+        expect(rowCollection.getWinner()).toBeTruthy();
         expect(rowCollection.verticalWinner(boardVals)).toEqual('o');
     });
 
@@ -62,7 +62,7 @@ describe('Rows', function() {
 
         boardVals = rowCollection.getBoardVals();
 
-        expect(rowCollection.checkForWinner()).toBeTruthy();
+        expect(rowCollection.getWinner()).toBeTruthy();
         expect(rowCollection.diagonalWinner(boardVals)).toEqual('x');
 
     });
